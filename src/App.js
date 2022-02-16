@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
-    <p>
-      Course Navigator
-    </p>
+    <div>
+      <SearchBar/>
+    </div>
   );
 }
 
