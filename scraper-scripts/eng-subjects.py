@@ -12,19 +12,20 @@ def getSubjects(subjectno):
     soup = BeautifulSoup(r.text, 'lxml')
     subjectinfo = soup.find('div', class_='ie-images')
     title = subjectinfo.find('h1').text
-    docType = "subject"
-    area = "IT"
+    entry = "subject"
+    area = "Engineering"
     if title != "Page Not Found":
         info =  "".join([em.text for em in subjectinfo.find_all('em')])
         description = subjectinfo.find('h3').find_next_sibling('p').text + subjectinfo.find('h3').find_next_sibling('p').find_next_sibling('p').text
-        subjects.append([title, info, description, docType, area])
+        subjects.append([title, info, description, entry, area])
     return
 
-for x in range(31251, 31258):
+for x in range(41012, 41030):
     getSubjects(x)
 
 # print(subjects)
 
-df = pd.DataFrame(subjects, columns = ['name', 'info', 'description'])
-df.to_excel('it-subjects.xlsx', index=False)
-# df.to_json('it-subjects.json')
+df = pd.DataFrame(subjects, columns = ['name', 'info', 'description', 'entry', 'area'])
+
+# df.to_excel('engineering-subjects.xlsx', index=False)
+df.to_json('engineering-subjects.json')
